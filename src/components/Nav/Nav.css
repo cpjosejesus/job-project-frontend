@@ -1,29 +1,31 @@
-.footer {
+.nav {
   display: flex;
   justify-content: space-between;
   padding: 0 120px;
-  background-color: #fff;
-  height: 80px;
+  border-bottom: 0.5px solid #000;
 }
 
-.footer__copyright {
-  color: #b6bcbf;
+.nav__logo {
+  max-width: 94px;
+  max-height: 30px;
   margin: auto 0;
 }
 
-.footer__links {
+.nav__links {
   list-style: none;
   margin: auto 0;
+  padding: 30px 0;
   display: flex;
   column-gap: 40px;
 }
 
-.footer__link {
+.nav__link {
   text-decoration: none;
+
   color: #000;
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-.footer__link:hover {
+.nav__link:hover {
   color: #2f80ed;
 }

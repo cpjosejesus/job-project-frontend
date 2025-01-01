@@ -1,0 +1,65 @@
+.card {
+  max-width: 995px;
+  display: flex;
+  margin: 200px auto;
+  column-gap: 54px;
+  padding: 0px;
+  background-color: #fff;
+  border-radius: 16px;
+}
+.card__container {
+  display: flex;
+  align-items: center;
+  max-width: 184px;
+  box-sizing: border-box;
+  /* padding-left: 20px;  */
+  padding-left: 20px;
+}
+
+.card__logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.card__details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.card__job {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.card__company {
+  font-size: 20px;
+  margin: 0;
+}
+
+.card__position {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.card__job-details {
+  margin: 0;
+  color: #005392;
+  font-weight: 900;
+}
+
+.card__date {
+  margin: 0;
+  color: #005392;
+  font-weight: 900;
+}
+
+.card__location {
+  margin: auto 0;
+  margin-right: 72px;
+}
