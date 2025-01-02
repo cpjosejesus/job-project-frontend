@@ -1,11 +1,11 @@
 import Header from "../Header/Header";
-import JobCard from "../JobCard/Card";
+import About from "../About/About";
 
 function Main() {
   return (
     <main className="page">
       <Header />
-      <JobCard />
+      <About />
     </main>
   );
 }

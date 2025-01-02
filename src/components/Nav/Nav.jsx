@@ -1,5 +1,7 @@
 import imgLogo from "../../images/logo_coffeeshop_dark.svg";
 
+import { Link } from "react-router-dom";
+
 function Nav() {
   return (
     <nav className="nav">
@@ -7,9 +9,9 @@ function Nav() {
 
       <ul className="nav__links">
         <li>
-          <a className="nav__link" href="#">
+          <Link className="nav__link" to="/">
             Home
-          </a>
+          </Link>
         </li>
         <li>
           <a className="nav__link" href="#">
@@ -17,9 +19,9 @@ function Nav() {
           </a>
         </li>
         <li>
-          <a className="nav__link" href="#">
+          <Link className="nav__link" to="/jobBoard">
             Jobs
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
