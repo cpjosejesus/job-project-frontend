@@ -11,11 +11,6 @@ function Footer() {
         </li>
         <li>
           <a className="footer__link" href="#">
-            About
-          </a>
-        </li>
-        <li>
-          <a className="footer__link" href="#">
             Jobs
           </a>
         </li>

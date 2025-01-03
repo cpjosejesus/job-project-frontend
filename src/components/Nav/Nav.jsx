@@ -1,4 +1,4 @@
-import imgLogo from "../../images/logo_coffeeshop_dark.svg";
+import imgLogo from "../../images/tripleTen_project.svg";
 
 import { Link } from "react-router-dom";
 
@@ -14,12 +14,7 @@ function Nav() {
           </Link>
         </li>
         <li>
-          <a className="nav__link" href="#">
-            About
-          </a>
-        </li>
-        <li>
-          <Link className="nav__link" to="/jobBoard">
+          <Link className="nav__link" to="/jobs">
             Jobs
           </Link>
         </li>

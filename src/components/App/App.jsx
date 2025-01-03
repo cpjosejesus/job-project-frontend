@@ -1,9 +1,10 @@
 import "./app.css";
 
-// Components
+// Custom Components
 import Nav from "../Nav/Nav";
 import Main from "../Main/Main";
 import JobBoard from "../JobBoard/JobBoard";
+import JobDetails from "../JobDetails/JobDetails";
 import Footer from "../Footer/Footer";
 
 // React components
@@ -15,7 +16,8 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/jobboard" element={<JobBoard />} />
+        <Route path="/jobs" element={<JobBoard />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
       </Routes>
       <Footer />
     </div>

@@ -1,12 +1,32 @@
 .card {
   max-width: 995px;
   display: flex;
-  margin: 200px auto;
+  margin: 24px auto;
   column-gap: 54px;
   padding: 0px;
   background-color: #fff;
   border-radius: 16px;
+  cursor: pointer;
 }
+
+.card:hover {
+  animation: shake 0.12s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0.5px, 0.5px) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-0.5px, 1px) rotate(-0.5deg);
+  }
+
+  100% {
+    transform: translate(0.5px, -1px) rotate(-0.5deg);
+  }
+}
+
 .card__container {
   display: flex;
   align-items: center;
@@ -33,6 +53,7 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   row-gap: 12px;
 }
 
