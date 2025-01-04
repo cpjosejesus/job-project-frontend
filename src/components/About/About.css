@@ -1,0 +1,24 @@
+.about {
+  border-radius: 16px;
+  margin: 80px auto;
+  display: flex;
+  column-gap: 50px;
+  padding: 0 222px;
+  align-items: center;
+}
+
+.about__img {
+  border-radius: 32px;
+  height: 520px;
+}
+
+.about__info {
+  background-color: #fff;
+  border-radius: 32px;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+  flex-wrap: wrap;
+}

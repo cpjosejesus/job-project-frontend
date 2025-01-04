@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import githubLogo from "../../images/github.svg";
 function Footer() {
   return (
@@ -5,19 +6,22 @@ function Footer() {
       <p className="footer__copyright">Copyright</p>
       <ul className="footer__links">
         <li>
-          <a className="footer__link" href="#">
+          <Link className="footer__link" to="/">
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a className="footer__link" href="#">
+          <Link className="footer__link" to="/jobs">
             Jobs
-          </a>
+          </Link>
         </li>
         <li>
-          <a className="footer__link footer__link-img" href="#">
+          <Link
+            className="footer__link footer__link-img"
+            to="https://github.com/cpjosejesus"
+          >
             <img src={githubLogo} alt="Github Logo" />
-          </a>
+          </Link>
         </li>
       </ul>
     </footer>

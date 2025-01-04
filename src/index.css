@@ -11,3 +11,6 @@
 @import url(./components/JobCard/JobCard.css);
 @import url(./components/SearchForm/SearchForm.css);
 @import url(./components/JobBoard/JobBoard.css);
+@import url(./components/JobDetails/JobDetails.css);
+@import url(./components/About/About.css);
+@import url(./components/Preloader/Preloader.css);

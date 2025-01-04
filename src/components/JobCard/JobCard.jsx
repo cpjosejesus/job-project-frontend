@@ -1,8 +1,10 @@
 import api from "../../utils/MuseAPI";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+// import MetaLogo from "../../images/meta.png";
 
 function JobCard({
+  jobId,
   companyId,
   companyName,
   position,
@@ -18,10 +20,10 @@ function JobCard({
     api.getCompanyById(companyId).then((res) => {
       setCompanyImg(res.refs.logo_image);
     });
-  }, [companyId]);
+  }, []);
 
   const handleCardClick = () => {
-    navigate(`/jobs/${companyId}`);
+    navigate(`/jobs/${jobId}`);
   };
 
   return (

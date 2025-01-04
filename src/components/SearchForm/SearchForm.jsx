@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dropdownBtn from "../../images/Dropdown.svg";
 
 function SearchForm() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,8 +38,9 @@ function SearchForm() {
           <button type="submit" className="search-button">
             Search Jobs
           </button>
-          <button type="submit" className="search-button">
+          <button type="submit" className="category-button">
             Category
+            <img src={dropdownBtn} />
           </button>
         </div>
       </form>
