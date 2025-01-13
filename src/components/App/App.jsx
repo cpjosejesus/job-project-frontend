@@ -5,7 +5,7 @@ import JobBoard from "../JobBoard/JobBoard";
 import JobDetails from "../JobDetails/JobDetails";
 import Footer from "../Footer/Footer";
 
-// React components
+// React Hooks
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -14,32 +14,89 @@ import api from "../../utils/MuseAPI";
 
 function App() {
   const [jobs, setJobs] = useState([]);
+  const [companies, setCompanies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
+  const [level, setLevel] = useState("");
+  const [category, setCategory] = useState("");
+  const [companyFilter, setCompanyFilter] = useState("");
 
   useEffect(() => {
-    api.getJobsbyPage(0).then((res) => {
-      setJobs(res.results);
-    });
-  }, []);
-
-  const handleMoreJobs = () => {
     setIsLoading(true);
-    const nextPage = page + 1;
-    setPage(nextPage);
 
+    const filtersParams = handleFilters({
+      level,
+      company: companyFilter,
+      category,
+    });
     api
-      .getJobsbyPage(nextPage)
+      .getJobsbyPage(page, filtersParams)
       .then((res) => {
-        setJobs((prevJobs) => [...prevJobs, ...res.results]);
+        if (page == 0) {
+          setJobs(res.results);
+        } else {
+          setJobs((prevJobs) => [...prevJobs, ...res.results]);
+        }
       })
-      .catch((e) => {
-        console.log(e);
-      })
+      .catch((e) => console.log(e))
       .finally(() => {
         setIsLoading(false);
       });
+  }, [level, companyFilter, category, page]);
+
+  useEffect(() => {
+    const storedCompanies = JSON.parse(localStorage.getItem("companies")) || {};
+
+    jobs.forEach((job) => {
+      api.getCompanyById(job.company.id).then((res) => {
+        const newCompany = {
+          [res.id]: res.refs.logo_image,
+        };
+
+        setCompanies((prevCompanies) => ({
+          ...prevCompanies,
+          ...newCompany,
+        }));
+      });
+    });
+  }, [jobs]);
+
+  const handleLevel = (newLevel) => {
+    setPage(0);
+    setLevel(newLevel);
+    console.log(companies);
   };
+
+  const handleCompany = (newCompany) => {
+    setPage(0);
+    setCompanyFilter(newCompany);
+  };
+
+  const handleCategory = (newCategory) => {
+    setPage(0);
+    setCategory(newCategory);
+  };
+
+  const clearFilters = () => {
+    setPage(0);
+    setCompanyFilter("");
+    setLevel("");
+    setCategory("");
+  };
+
+  const handleMoreJobs = () => {
+    setPage(page + 1);
+  };
+
+  const handleFilters = (filters) => {
+    const activeFilters = Object.fromEntries(
+      Object.entries(filters).filter(([key, value]) => value !== "")
+    );
+
+    return activeFilters;
+  };
+
+  const handleSearch = () => {};
 
   return (
     <div className="page">
@@ -51,12 +108,22 @@ function App() {
           element={
             <JobBoard
               jobs={jobs}
+              companies={companies}
               isLoading={isLoading}
+              level={level}
+              companyFilter={companyFilter}
+              category={category}
               onClickMoreJobs={handleMoreJobs}
+              onClickFilters={handleFilters}
+              onSearch={handleSearch}
+              handleLevel={handleLevel}
+              handleCompany={handleCompany}
+              handleCategory={handleCategory}
+              clearFilters={clearFilters}
             />
           }
         />
-        <Route path="/jobs/:id" element={<JobDetails data={jobs} />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
       </Routes>
       <Footer />
     </div>

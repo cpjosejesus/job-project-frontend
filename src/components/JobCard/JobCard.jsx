@@ -1,11 +1,8 @@
-import api from "../../utils/MuseAPI";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import MetaLogo from "../../images/meta.png";
 
 function JobCard({
   jobId,
-  companyId,
+  companyImg,
   companyName,
   position,
   level,
@@ -13,14 +10,16 @@ function JobCard({
   locationName,
   publicationDate,
 }) {
-  const [companyImg, setCompanyImg] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    api.getCompanyById(companyId).then((res) => {
-      setCompanyImg(res.refs.logo_image);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
-  }, []);
+  };
 
   const handleCardClick = () => {
     navigate(`/jobs/${jobId}`);
@@ -41,9 +40,9 @@ function JobCard({
           <p className="card__company">{companyName}</p>
           <p className="card__position">{position}</p>
           <p className="card__job-details">
-            {level} - {category}
+            {level} {category ? " - " + category : ""}
           </p>
-          <p className="card__date">{publicationDate}</p>
+          <p className="card__date">{formatDate(publicationDate)}</p>
         </div>
         <div className="card__location">{locationName}</div>
       </div>

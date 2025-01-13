@@ -3,37 +3,38 @@ class Api {
     this._baseUrl = options.baseUrl;
   }
 
-  getJobsbyPage(pageNro) {
-    return fetch(`${this._baseUrl}/jobs?page=${pageNro}`, {
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
+  getJobsbyPage(pageNro, filters = {}) {
+    const queryParams = new URLSearchParams({
+      page: pageNro,
+      ...filters,
+    }).toString();
+
+    return fetch(`${this._baseUrl}/jobs?${queryParams}`, {
       method: "GET",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._handleResponse);
   }
 
   getJobById(jobId) {
     return fetch(`${this._baseUrl}/jobs/${jobId}`, {
       method: "GET",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._handleResponse);
+  }
+
+  getCompanies(page) {
+    return fetch(`${this._baseUrl}/companies?page=${page}`).then(this._handleResponse);
   }
 
   getCompanyById(companyId) {
     return fetch(`${this._baseUrl}/companies/${companyId}`, {
       method: "GET",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._handleResponse);
   }
 }
 

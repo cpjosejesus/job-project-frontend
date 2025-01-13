@@ -3,7 +3,7 @@ import githubLogo from "../../images/github.svg";
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__copyright">Copyright</p>
+      <p className="footer__copyright">&copy; 2025 Jose Jesus CP</p>
       <ul className="footer__links">
         <li>
           <Link className="footer__link" to="/">

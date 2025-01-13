@@ -1,32 +1,46 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import parse from "html-react-parser";
 
-// import metaLogo from "../../images/meta.png";
 import userIcon from "../../images/User.svg";
 import pinIcon from "../../images/Pin.svg";
 import PreLoader from "../Preloader/Preloader";
+
 import api from "../../utils/MuseAPI";
 
-function JobDetails({ data }) {
+function JobDetails() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
-  const location = useLocation();
   const [companyImg, setCompanyImg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!data) return;
-    console.log(data);
-    console.log(id);
-
-    const selectedJob = data.find((res) => res.id == id);
-    setJob(selectedJob);
+    setIsLoading(true);
     window.scrollTo(0, 0);
 
-    api.getCompanyById(selectedJob.company.id).then((res) => {
-      setCompanyImg(res.refs.logo_image);
-      console.log(res.refs.landing_page);
-    });
-  }, [data, id, location]);
+    api
+      .getJobById(id)
+      .then((res) => {
+        setJob(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (job) {
+      api
+        .getCompanyById(job.company?.id)
+        .then((res) => {
+          setCompanyImg(res.refs.logo_image);
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, [job]);
 
   const handleApplyClick = () => {
     window.open(job.refs.landing_page, "_blank");
@@ -41,32 +55,36 @@ function JobDetails({ data }) {
 
   return (
     <section className="job-details">
-      <div className="job-details__container">
+      {isLoading ? (
+        <PreLoader />
+      ) : (
         <div>
-          <h1>{job.name}</h1>
-          <div className="job-details__info">
-            <img src={userIcon} />
-            <p>{job.company.name}</p>
+          <div className="job-details__container">
+            <div>
+              <h1>{job.name}</h1>
+              <div className="job-details__info">
+                <img src={userIcon} />
+                <p>{job.company.name}</p>
+              </div>
+              <div className="job-details__info">
+                <img src={pinIcon} />
+                <p>{job.locations[0]?.name}</p>
+              </div>
+              <div className="job-details__info">
+                <img src={userIcon} />
+                <p>{job.levels[0]?.name}</p>
+              </div>
+              <button className="job-details__btn" onClick={handleApplyClick}>
+                Apply
+              </button>
+            </div>
+            <img className="job-details__img" src={companyImg} />
           </div>
-          <div className="job-details__info">
-            <img src={pinIcon} />
-            <p>{job.locations[0]?.name}</p>
+          <div className="job-details__contents job-details__contents--no-spacing">
+            {parse(job.contents)}
           </div>
-          <div className="job-details__info">
-            <img src={userIcon} />
-            <p>{job.levels[0]?.name}</p>
-          </div>
-          <button className="job-details__btn" onClick={handleApplyClick}>
-            Aplicar
-          </button>
         </div>
-        <img className="job-details__img" src={companyImg} />
-      </div>
-
-      <div
-        className="job-details__contents"
-        dangerouslySetInnerHTML={{ __html: job.contents }}
-      ></div>
+      )}
     </section>
   );
 }
