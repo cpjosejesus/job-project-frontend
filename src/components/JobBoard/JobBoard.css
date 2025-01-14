@@ -1,0 +1,112 @@
+.jobs__title {
+  max-width: 965px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.jobs__container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.jobs__btn {
+  padding: 10px 20px;
+  background: #2f71e5;
+  color: white;
+  border: 1px solid #d1d2d6;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+}
+
+.jobs__btn:hover {
+  background: #0056b3;
+}
+
+.jobs__btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.jobs__buttons {
+  display: flex;
+  gap: 12px;
+  max-width: 995px;
+  margin: 0 auto;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.jobs__filters {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: 995px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.jobs__filters-inactive {
+  display: none;
+}
+
+.jobs__filters-active {
+  padding: 6px 12px;
+  background: #fff;
+  border-radius: 100px;
+  border: 1px solid #cfcfcf;
+  font-size: 14px;
+  color: #2f71e5;
+  display: inline-block;
+}
+
+/* Desktop - 1024px */
+@media screen and (max-width: 1024px) {
+  .jobs__title {
+    max-width: 90%;
+    padding-top: 60px;
+  }
+
+  .jobs__buttons {
+    max-width: 90%;
+  }
+
+  .jobs__filters {
+    max-width: 90%;
+  }
+}
+
+/* Tablet - 768px */
+@media screen and (max-width: 768px) {
+  .jobs__title {
+    padding-top: 40px;
+  }
+
+  .jobs__buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Mobile - 375px */
+@media screen and (max-width: 375px) {
+  .jobs__title {
+    padding-top: 30px;
+    font-size: 24px;
+  }
+
+  .jobs__buttons {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+  }
+
+  .btn__jobs {
+    min-width: 100%;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

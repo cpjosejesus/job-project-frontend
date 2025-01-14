@@ -1,0 +1,157 @@
+.card {
+  max-width: 995px;
+  display: flex;
+  margin: 24px auto;
+  column-gap: 54px;
+  padding: 0px;
+  background-color: #fff;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.card:hover {
+  animation: shake 0.12s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0.5px, 0.5px) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-0.5px, 1px) rotate(-0.5deg);
+  }
+
+  100% {
+    transform: translate(0.5px, -1px) rotate(-0.5deg);
+  }
+}
+
+.card__container {
+  display: flex;
+  align-items: center;
+  max-width: 184px;
+  box-sizing: border-box;
+  /* padding-left: 20px;  */
+  padding-left: 20px;
+}
+
+.card__logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.card__details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.card__job {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 12px;
+}
+
+.card__company {
+  font-size: 20px;
+  margin: 0;
+}
+
+.card__position {
+  margin: 0;
+  font-size: 26px;
+  font-family: "Inter Black", Arial, Helvetica, sans-serif;
+}
+
+.card__job-details {
+  margin: 0;
+  color: #005392;
+  font-weight: 900;
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+}
+
+.card__date {
+  margin: 0;
+  color: #005392;
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+}
+
+.card__location {
+  margin: auto 0;
+  margin-right: 72px;
+}
+
+/* Desktop - 1024px */
+@media screen and (max-width: 1024px) {
+  .card {
+    max-width: 90%;
+    column-gap: 30px;
+  }
+
+  .card__position {
+    font-size: 22px;
+  }
+
+  .card__company {
+    font-size: 18px;
+  }
+}
+
+/* Tablet - 768px */
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .card__container {
+    max-width: 120px;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .card__details {
+    margin: 0;
+    text-align: center;
+  }
+
+  .card__job {
+    width: 100%;
+  }
+
+  .card__location {
+    margin: 12px 0 0 0;
+    text-align: center;
+  }
+}
+
+/* Mobile - 375px */
+@media screen and (max-width: 375px) {
+  .card {
+    margin: 16px auto;
+    padding: 16px;
+  }
+
+  .card__position {
+    font-size: 18px;
+  }
+
+  .card__company {
+    font-size: 16px;
+  }
+
+  .card__job-details,
+  .card__date {
+    font-size: 14px;
+  }
+
+  .card__container {
+    max-width: 100px;
+  }
+}

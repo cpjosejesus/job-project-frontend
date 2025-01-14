@@ -1,33 +1,148 @@
-import { useState } from "react";
-import reactLogo from "../assets/react.svg";
-import "../blocks/app.css";
+// Custom Components
+import Nav from "../Nav/Nav";
+import Main from "../Main/Main";
+import JobBoard from "../JobBoard/JobBoard";
+import JobDetails from "../JobDetails/JobDetails";
+import Footer from "../Footer/Footer";
+
+// React Hooks
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+// Api
+import api from "../../utils/MuseAPI";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [jobs, setJobs] = useState([]);
+  const [companies, setCompanies] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(0);
+  const [level, setLevel] = useState("");
+  const [category, setCategory] = useState("");
+  const [companyFilter, setCompanyFilter] = useState("");
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    const filtersParams = handleFilters({
+      level,
+      company: companyFilter,
+      category,
+    });
+    api
+      .getJobsbyPage(page, filtersParams)
+      .then((res) => {
+        if (page == 0) {
+          setJobs(res.results);
+        } else {
+          setJobs((prevJobs) => [...prevJobs, ...res.results]);
+        }
+      })
+      .catch((e) => console.log(e))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [level, companyFilter, category, page]);
+
+  useEffect(() => {
+    const storedCompanies = JSON.parse(localStorage.getItem("companies")) || {};
+
+    jobs.forEach((job) => {
+      if (!storedCompanies[job.company.id]) {
+        api
+          .getCompanyById(job.company.id)
+          .then((res) => {
+            const newCompany = {
+              [res.id]: res.refs.logo_image,
+            };
+
+            const updatedCompanies = {
+              ...storedCompanies,
+              ...newCompany,
+            };
+
+            setCompanies((prevCompanies) => ({
+              ...prevCompanies,
+              ...newCompany,
+            }));
+
+            localStorage.setItem("companies", JSON.stringify(updatedCompanies));
+          })
+          .catch((e) => console.log("Error fetching: ", e));
+      } else {
+        setCompanies((prevCompanies) => ({
+          ...prevCompanies,
+          [job.company.id]: storedCompanies[job.company.id],
+        }));
+      }
+    });
+  }, [jobs]);
+
+  const handleLevel = (newLevel) => {
+    setPage(0);
+    setLevel(newLevel);
+  };
+
+  const handleCompany = (newCompany) => {
+    setPage(0);
+    setCompanyFilter(newCompany);
+  };
+
+  const handleCategory = (newCategory) => {
+    setPage(0);
+    setCategory(newCategory);
+  };
+
+  const clearFilters = () => {
+    setPage(0);
+    setCompanyFilter("");
+    setLevel("");
+    setCategory("");
+  };
+
+  const handleMoreJobs = () => {
+    setPage(page + 1);
+  };
+
+  const handleFilters = (filters) => {
+    const activeFilters = Object.fromEntries(
+      Object.entries(filters).filter(([key, value]) => value !== "")
+    );
+
+    return activeFilters;
+  };
+
+  const handleSearch = () => {};
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={reactLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="page">
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route
+          path="/jobs"
+          element={
+            <JobBoard
+              jobs={jobs}
+              companies={companies}
+              isLoading={isLoading}
+              level={level}
+              companyFilter={companyFilter}
+              category={category}
+              onClickMoreJobs={handleMoreJobs}
+              onClickFilters={handleFilters}
+              onSearch={handleSearch}
+              handleLevel={handleLevel}
+              handleCompany={handleCompany}
+              handleCategory={handleCategory}
+              clearFilters={clearFilters}
+            />
+          }
+        />
+        <Route path="/jobs/:id" element={<JobDetails />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
