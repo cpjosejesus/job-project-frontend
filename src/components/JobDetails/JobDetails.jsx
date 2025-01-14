@@ -61,10 +61,10 @@ function JobDetails() {
         <div>
           <div className="job-details__container">
             <div>
-              <h1>{job.name}</h1>
+              <h1 className="job-details__position">{job.name}</h1>
               <div className="job-details__info">
                 <img src={userIcon} />
-                <p>{job.company.name}</p>
+                <p className="job-details__company">{job.company.name}</p>
               </div>
               <div className="job-details__info">
                 <img src={pinIcon} />
@@ -80,9 +80,7 @@ function JobDetails() {
             </div>
             <img className="job-details__img" src={companyImg} />
           </div>
-          <div className="job-details__contents job-details__contents--no-spacing">
-            {parse(job.contents)}
-          </div>
+          <div className="job-details__contents">{parse(job.contents)}</div>
         </div>
       )}
     </section>

@@ -1,29 +1,31 @@
 import { useState } from "react";
-
 import dropdownBtn from "../../images/Dropdown.svg";
 
 function DropDownBtn({ btnName, handleSelection, elements }) {
   const [isDropDownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <div className=" drop-down__container category-wrapper">
+    <div className="dropdown">
       <button
-        type="submit"
-        className="category-button"
+        type="button"
+        className="dropdown__button"
         onClick={() => setIsDropdownOpen(!isDropDownOpen)}
       >
         {btnName}
         <img
           src={dropdownBtn}
-          className={`dropdown-icon ${isDropDownOpen ? "rotate" : ""}`}
+          className={`dropdown__icon ${
+            isDropDownOpen ? "dropdown__icon-rotated" : ""
+          }`}
+          alt="dropdown icon"
         />
       </button>
       {isDropDownOpen && (
-        <ul className="category-dropdown">
+        <ul className="dropdown__list">
           {elements.map((element, idx) => (
             <li
               key={idx}
-              className="category-item"
+              className="dropdown__item"
               onClick={() => {
                 handleSelection(element);
                 setIsDropdownOpen(false);

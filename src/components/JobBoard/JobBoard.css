@@ -4,13 +4,13 @@
   padding-top: 80px;
 }
 
-.btn__container {
+.jobs__container {
   display: flex;
   justify-content: center;
   padding-bottom: 32px;
 }
 
-.btn__jobs {
+.jobs__btn {
   padding: 10px 20px;
   background: #2f71e5;
   color: white;
@@ -20,11 +20,11 @@
   border: none;
 }
 
-.btn__jobs:hover {
+.jobs__btn:hover {
   background: #0056b3;
 }
 
-.btn__jobs_disabled {
+.jobs__btn-disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
@@ -70,6 +70,10 @@
   }
 
   .jobs__buttons {
+    max-width: 90%;
+  }
+
+  .jobs__filters {
     max-width: 90%;
   }
 }

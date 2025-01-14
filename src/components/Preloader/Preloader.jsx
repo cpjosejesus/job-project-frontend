@@ -1,7 +1,7 @@
 function PreLoader() {
   return (
     <div className="preloader">
-      <i className="circle-preloader"></i>
+      <i className="preloader__circle"></i>
     </div>
   );
 }

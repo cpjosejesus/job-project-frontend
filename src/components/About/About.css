@@ -27,6 +27,14 @@
   gap: 20px;
 }
 
+.about__author {
+  font-family: "Inter Black", Arial, Helvetica, sans-serif;
+}
+
+.about__role {
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
+}
+
 /* Desktop - 1024px */
 @media screen and (max-width: 1024px) {
   .about {

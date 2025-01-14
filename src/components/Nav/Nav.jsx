@@ -12,7 +12,7 @@ function Nav() {
       </Link>
 
       <button
-        className={`nav__burger ${isMenuOpen ? "nav__burger_active" : ""}`}
+        className={`nav__burger ${isMenuOpen ? "nav__burger-active" : ""}`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <span></span>
@@ -20,7 +20,7 @@ function Nav() {
         <span></span>
       </button>
 
-      <ul className={`nav__links ${isMenuOpen ? "nav__links_active" : ""}`}>
+      <ul className={`nav__links ${isMenuOpen ? "nav__links-active" : ""}`}>
         <li>
           <Link
             className="nav__link"

@@ -41,8 +41,8 @@ function JobBoard({
             handleSelection={handleCategory}
           />
           <button
-            className={`btn__jobs ${
-              !level && !category && !companyFilter ? "btn__jobs_disabled" : ""
+            className={`jobs__btn ${
+              !level && !category && !companyFilter ? "jobs__btn-disabled" : ""
             }`}
             onClick={clearFilters}
             disabled={!level && !category && !companyFilter}
@@ -84,8 +84,8 @@ function JobBoard({
       {isLoading && <PreLoader />}
 
       {!isLoading && jobs.length > 0 && (
-        <div className="btn__container">
-          <button className="btn__jobs" onClick={handleClickJobs}>
+        <div className="jobs__container">
+          <button className="jobs__btn" onClick={handleClickJobs}>
             View More Jobs
           </button>
         </div>

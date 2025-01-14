@@ -1,4 +1,8 @@
-.category-button {
+.dropdown {
+  position: relative;
+}
+
+.dropdown__button {
   display: flex;
   align-items: center;
   background: #2f71e5;
@@ -11,23 +15,19 @@
   transition: all 0.3s ease;
 }
 
-.category-button:hover {
+.dropdown__button:hover {
   background: #0056b3;
 }
 
-.category-wrapper {
-  position: relative;
-}
-
-.dropdown-icon {
+.dropdown__icon {
   transition: transform 0.3s ease;
 }
 
-.dropdown-icon.rotate {
+.dropdown__icon-rotated {
   transform: rotate(180deg);
 }
 
-.category-dropdown {
+.dropdown__list {
   position: absolute;
   top: 100%;
   background: white;
@@ -37,14 +37,13 @@
   min-width: 200px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-flow: column;
   grid-template-rows: repeat(15, auto);
 }
 
-.category-item {
+.dropdown__item {
   padding: 8px 16px;
   list-style: none;
   cursor: pointer;
@@ -55,17 +54,16 @@
   text-overflow: ellipsis;
 }
 
-.category-item:hover {
+.dropdown__item:hover {
   background: #f3f3f3;
 }
 
-/* Tablet - 768px */
 @media screen and (max-width: 768px) {
-  .category-button {
+  .dropdown__button {
     padding: 8px 12px;
   }
 
-  .category-dropdown {
+  .dropdown__list {
     min-width: 160px;
     grid-template-columns: 1fr;
     grid-auto-flow: row;
@@ -76,39 +74,38 @@
     scrollbar-color: #2f71e5 #f0f0f0;
   }
 
-  .category-dropdown::-webkit-scrollbar {
+  .dropdown__list::-webkit-scrollbar {
     width: 4px;
   }
 
-  .category-dropdown::-webkit-scrollbar-track {
+  .dropdown__list::-webkit-scrollbar-track {
     background: #f0f0f0;
     border-radius: 4px;
   }
 
-  .category-dropdown::-webkit-scrollbar-thumb {
+  .dropdown__list::-webkit-scrollbar-thumb {
     background-color: #2f71e5;
     border-radius: 4px;
   }
 
-  .category-item {
+  .dropdown__item {
     min-width: auto;
   }
 }
 
-/* Mobile - 375px */
 @media screen and (max-width: 375px) {
-  .category-button {
+  .dropdown__button {
     padding: 6px 10px;
     gap: 4px;
     font-size: 14px;
   }
 
-  .category-dropdown {
+  .dropdown__list {
     min-width: 140px;
     right: 0;
   }
 
-  .category-item {
+  .dropdown__item {
     padding: 6px 12px;
   }
 }

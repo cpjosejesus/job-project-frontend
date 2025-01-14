@@ -5,9 +5,9 @@ function About() {
     <section className="about">
       <img src={profileImg} alt="Jose Jesus" className="about__img" />
       <div className="about__info">
-        <h1>Jose Jesus CP</h1>
-        <h2>Desarrollador</h2>
-        <p>
+        <h1 className="about__author">Jose Jesus CP</h1>
+        <h2 className="about__role">Desarrollador</h2>
+        <p className="about__paragraph">
           Profesional en robótica y desarrollo de software con más de 5 años de
           experiencia en la dirección de proyectos académicos y profesionales,
           combinando habilidades en mecatrónica, inteligencia artificial y

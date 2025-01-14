@@ -48,23 +48,39 @@ function App() {
     const storedCompanies = JSON.parse(localStorage.getItem("companies")) || {};
 
     jobs.forEach((job) => {
-      api.getCompanyById(job.company.id).then((res) => {
-        const newCompany = {
-          [res.id]: res.refs.logo_image,
-        };
+      if (!storedCompanies[job.company.id]) {
+        api
+          .getCompanyById(job.company.id)
+          .then((res) => {
+            const newCompany = {
+              [res.id]: res.refs.logo_image,
+            };
 
+            const updatedCompanies = {
+              ...storedCompanies,
+              ...newCompany,
+            };
+
+            setCompanies((prevCompanies) => ({
+              ...prevCompanies,
+              ...newCompany,
+            }));
+
+            localStorage.setItem("companies", JSON.stringify(updatedCompanies));
+          })
+          .catch((e) => console.log("Error fetching: ", e));
+      } else {
         setCompanies((prevCompanies) => ({
           ...prevCompanies,
-          ...newCompany,
+          [job.company.id]: storedCompanies[job.company.id],
         }));
-      });
+      }
     });
   }, [jobs]);
 
   const handleLevel = (newLevel) => {
     setPage(0);
     setLevel(newLevel);
-    console.log(companies);
   };
 
   const handleCompany = (newCompany) => {

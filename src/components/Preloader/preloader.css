@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.circle-preloader {
+.preloader__circle {
   display: block;
   width: 25px;
   height: 25px;

@@ -12,22 +12,22 @@ function SearchForm({ handleCompany }) {
 
   return (
     <section className="search">
-      <form onSubmit={handleSubmit} className="search-form">
-        <div className="search-container">
-          <div className="search-box">
+      <form onSubmit={handleSubmit} className="search__form">
+        <div className="search__container">
+          <div className="search__box">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by Company"
-              className="search-input"
+              className="search__input"
             />
             <img src={searchIcon} alt="Search Icon" />
           </div>
           <button
             type="submit"
-            className={`search-button ${
-              !searchTerm ? "search-button-disable" : ""
+            className={`search__button ${
+              !searchTerm ? "search__button-disable" : ""
             }`}
             disabled={!searchTerm.trim()}
           >

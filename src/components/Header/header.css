@@ -36,6 +36,7 @@
 .header__title {
   font-size: 48px;
   margin-bottom: 20px;
+  font-family: "Inter Black", Arial, Helvetica, sans-serif;
 }
 
 .header__subtitle {

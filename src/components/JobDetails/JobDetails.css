@@ -38,11 +38,12 @@
   padding: 40px 330px;
 }
 
-.job-details__img {
-  max-width: 200px;
+.job-details__position {
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
 }
 
-.job-details__contents--no-spacing ul {
+.job-details__img {
+  max-width: 200px;
 }
 
 /* Desktop - 1024px */

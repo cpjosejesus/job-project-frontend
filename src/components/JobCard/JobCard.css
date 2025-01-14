@@ -65,19 +65,20 @@
 .card__position {
   margin: 0;
   font-size: 26px;
-  font-weight: 900;
+  font-family: "Inter Black", Arial, Helvetica, sans-serif;
 }
 
 .card__job-details {
   margin: 0;
   color: #005392;
   font-weight: 900;
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
 }
 
 .card__date {
   margin: 0;
   color: #005392;
-  font-weight: 900;
+  font-family: "Inter SemiBold", Arial, Helvetica, sans-serif;
 }
 
 .card__location {
