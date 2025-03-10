@@ -16,6 +16,7 @@ function Nav() {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <span></span>
+
         <span></span>
         <span></span>
       </button>
